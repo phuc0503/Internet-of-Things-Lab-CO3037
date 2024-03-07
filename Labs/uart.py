@@ -29,6 +29,7 @@ def processData(client, data):
         client.publish("bbc-lux", splitData[2]) 
 
 mess = ""
+
 def readSerial(client):
     bytesToRead = ser.inWaiting()
     if (bytesToRead > 0):
@@ -42,3 +43,6 @@ def readSerial(client):
                 mess = ""
             else:
                 mess = mess[end+1:]
+
+def writeData(data):
+    ser.write(str(data).encode())

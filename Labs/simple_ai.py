@@ -13,9 +13,9 @@ class_names = open("labels.txt", "r").readlines()
 # class_names = ["Không khẩu trang", "Đeo khẩu trang", "Không có người"]
 
 # CAMERA can be 0 or 1 based on default camera of your computer
-# url = "http://192.168.1.35:4747/video"
-# camera = cv2.VideoCapture(url)
-camera = cv2.VideoCapture(0)
+url = "http://172.16.0.175:4747/video"
+camera = cv2.VideoCapture(url)
+# camera = cv2.VideoCapture(0)
 
 def image_detector():
 # while True:
@@ -39,8 +39,12 @@ def image_detector():
     index = np.argmax(prediction)
     class_name = class_names[index]
     confidence_score = prediction[0][index]
-
+    
+    # Listen to the keyboard for presses.
+    # keyboard_input = cv2.waitKey(1)
     # Print prediction and confidence score
     print("Class:", class_name[2:], end="")
     print("Confidence Score:", str(np.round(confidence_score * 100))[:-2], "%")
     return class_name[2:]
+    
+    
